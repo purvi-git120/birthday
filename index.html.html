@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Universe For You ♡</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080817;color:#fff0f7;font-family:Georgia,serif;text-align:center;overflow-x:hidden}
+button{cursor:pointer;border:1px solid #ffc4df;background:linear-gradient(135deg,#ff9bc9,#d9a7ff);color:#25102a;border-radius:30px;padding:14px 24px;font-size:15px;font-weight:bold;margin:12px;transition:.3s}
+button:hover{transform:scale(1.06);box-shadow:0 0 22px #ff9bc9}
+section{display:none;min-height:100vh;padding:55px 20px;position:relative;z-index:1}
+section.active{display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fade .9s}
+h1{font-size:clamp(30px,7vw,58px);color:#ffc4df;text-shadow:0 0 22px #ff76bd}
+h2{color:#e6bdff}
+p{font-size:18px;line-height:1.8;max-width:700px}
+.small{font-size:14px;color:#d5c3e7}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;color:#fff;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.3)}}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+.card{background:#ffffff0b;border:1px solid #ffffff24;border-radius:20px;padding:22px;margin:12px;max-width:650px;width:100%;backdrop-filter:blur(8px)}
+.envelope{font-size:100px;cursor:pointer;animation:float 2s infinite alternate}
+@keyframes float{to{transform:translateY(-12px)}}
+#cake{font-size:110px;margin:10px}
+.candles{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.candle{font-size:38px;background:none;border:none;padding:5px;color:white}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;width:100%;max-width:800px}
+.memory{border:1px solid #ffc4df;border-radius:16px;padding:22px;background:#ffb6db12;min-height:135px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.memory span{font-size:35px}
+input{padding:13px;border-radius:12px;border:1px solid #ffb6db;background:#171329;color:white;max-width:90%;font-size:16px}
+#letter{white-space:pre-line;line-height:2;text-align:left}
+.portal{font-size:65px;cursor:pointer;animation:float 2s infinite alternate}
+.confetti{position:fixed;top:-20px;z-index:20;pointer-events:none;animation:rise 3.5s linear forwards}
+footer{color:#9c8ba9;font-size:12px;margin-top:35px}
+@media(max-width:480px){section{padding:35px 15px}p{font-size:16px}}
+/* OUR LITTLE UNIVERSE */
+
+.photo-universe {
+    width: 100%;
+    max-width: 1000px;
+    margin: 55px auto 30px;
+    padding: 25px 15px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff0f6;
+}
+
+.universe-title {
+    font-size: clamp(30px, 5vw, 48px);
+    color: #ffc1dc;
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255, 150, 200, 0.4);
+}
+
+.universe-subtitle {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #e9c9db;
+    margin-bottom: 35px;
+}
+
+/* PHOTO COLLAGE */
+
+.photo-collage {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+/* POLAROID FRAMES */
+
+.polaroid {
+    background: #fff9fc;
+    color: #65485a;
+    padding: 10px 10px 5px;
+    border-radius: 4px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.polaroid:nth-child(3n) {
+    transform: rotate(-1deg);
+}
+
+.polaroid:hover {
+    transform: translateY(-8px) rotate(0deg) scale(1.04);
+    box-shadow: 0 14px 35px rgba(255, 140, 190, 0.25);
+    z-index: 2;
+}
+
+.polaroid img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.polaroid p {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    margin: 12px 2px 9px;
+    color: #79576d;
+}
+
+/* VIDEO MEMORY */
+
+.video-memory {
+    margin: 65px auto 35px;
+    max-width: 750px;
+    padding: 25px;
+    background: rgba(255, 220, 238, 0.07);
+    border: 1px solid rgba(255, 190, 220, 0.25);
+    border-radius: 22px;
+    box-sizing: border-box;
+}
+
+.video-memory h2 {
+    color: #ffc1dc;
+    font-size: clamp(22px, 4vw, 30px);
+    margin-bottom: 12px;
+}
+
+.video-memory p {
+    color: #e9c9db;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.video-memory video {
+    display: block;
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    max-height: 75vh;
+    margin: 25px auto;
+    border-radius: 18px;
+    background: #000;
+    box-shadow: 0 0 25px rgba(255, 150, 200, 0.25);
+    object-fit: cover;
+}
+.universe-footer {
+    margin-top: 40px;
+    color: #ffc1dc;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* MOBILE LAYOUT */
+
+@media (max-width: 650px) {
+
+    .photo-collage {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .polaroid {
+        padding: 7px 7px 3px;
+    }
+
+    .polaroid img {
+        height: 150px;
+    }
+
+    .polaroid p {
+        font-size: 12px;
+    }
+
+    .video-memory {
+        padding: 15px;
+        margin-top: 45px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .photo-collage {
+        grid-template-columns: 1fr;
+    }
+
+    .polaroid img {
+        height: 240px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+<div id="stars"></div>
+
+<!-- 1. WELCOME -->
+
+<section id="s1" class="active">
+ <p class="small">✦ A tiny message from somewhere in the universe ✦</p>
+ <h1>psst... you. ♡</h1>
+ <p>Someone has prepared something for you.</p>
+ <div class="envelope" onclick="openEnvelope()" aria-label="Open envelope">💌</div>
+ <p class="small">There's a little surprise waiting inside...</p>
+ <button onclick="openEnvelope()">OPEN YOUR MYSTERY LETTER ♡</button>
+</section>
+
+<!-- 2. BIRTHDAY REVEAL -->
+
+<section id="s2">
+ <p>✨ DELIVERY SUCCESSFUL ✨</p>
+ <h1 id="birthdayName">HAPPY BIRTHDAY, BESTIE! 🎂</h1>
+ <p>Today, the universe has one very important reason to celebrate.</p>
+ <div style="font-size:60px">🎉 💗 🎉</div>
+ <p>And that reason is YOU.</p>
+ <div class="card">A little universe has been created just for you, filled with memories, surprises, and a tiny bit of chaos.</div>
+ <button onclick="go(3)">ENTER YOUR LITTLE UNIVERSE ♡ →</button>
+</section>
+
+<!-- 3. MEMORY MUSEUM -->
+
+<section id="s3">
+ <h1>THE MUSEUM OF US 📸</h1>
+ <p>A little collection of memories, laughter, and moments worth keeping forever.</p>
+ <div class="gallery">
+ </div>
+ <!-- OUR LITTLE UNIVERSE: PHOTO COLLAGE -->
+
+<div class="photo-universe">
+
+    <h2 class="universe-title">Our Little Universe ♡</h2>
+
+    <p class="universe-subtitle">
+        A little collection of memories, laughter, and us. ✨
+    </p>
+
+    <div class="photo-collage">
+
+        <div class="polaroid">
+            <img src="images/photo1.jpeg" alt="Our memory 1">
+            <p>Just us 😻</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo2.jpg" alt="Our memory 2">
+            <p>You clicking Picture 😂 </p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo3.jpeg" alt="Our memory 3">
+            <p>No Negativity ✨</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo4.jpeg" alt="Our memory 4">
+            <p>Core memories 🎀</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo5.jpeg" alt="Our memory 5">
+            <p>Forever iconic between breaks 💗</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo7.jpeg" alt="Our memory 7">
+            <p>Gorgeous ♡</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo8.jpeg" alt="Our memory 8">
+            <p>You being You 🌷</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo9.jpeg" alt="Our memory 9">
+            <p>One for the memories 💌</p>
+        </div>
+
+        <div class="polaroid">
+            <img src="images/photo10.jpeg" alt="Our memory 10">
+            <p>Always special 💗</p>
+        </div>
+
+	<div class="polaroid">
+            <img src="images/photo11.jpeg" alt="Our memory 10">
+            <p>What a pose!!🤌🏻🤌🏻</p>
+        </div>
+
+
+    </div>
+
+    <!-- VIDEO SECTION -->
+
+    <div class="video-memory">
+
+        <h2>A Little Video, A Lot of Memories 🎥</h2>
+
+        <p>Some memories deserve to be watched more than once. ♡</p>
+
+        <video controls preload="metadata" playsinline>
+            <source src="images/memories.mp4" type="video/mp4">
+            Your browser does not support video playback.
+        </video>
+
+    </div>
+
+    <p class="universe-footer">
+        Different moments, countless memories, and one very special friendship. ♡
+    </p>
+
+</div>
+ <div id="memoryMessage" class="card" aria-live="polite">Choose a room in our little museum. ♡</div>
+ <button onclick="go(4)">NEXT SURPRISE →</button>
+</section>
+
+<!-- 4. BIRTHDAY CAKE -->
+
+<section id="s4">
+ <h1>A LITTLE WISH FOR YOU 🎂</h1>
+ <p>Make a wish, birthday girl. Choose every candle to blow it out!</p>
+ <div id="cake">🎂</div>
+ <div class="candles">
+  <button class="candle" onclick="blow(0)" aria-label="Blow out candle 1">🕯️</button>
+  <button class="candle" onclick="blow(1)" aria-label="Blow out candle 2">🕯️</button>
+  <button class="candle" onclick="blow(2)" aria-label="Blow out candle 3">🕯️</button>
+  <button class="candle" onclick="blow(3)" aria-label="Blow out candle 4">🕯️</button>
+  <button class="candle" onclick="blow(4)" aria-label="Blow out candle 5">🕯️</button>
+ </div>
+ <div id="wish" class="card">Every candle holds a little wish for you. ✨</div>
+ <button id="cakeNext" onclick="go(5)" style="display:none">WHAT HAPPENS NEXT? →</button>
+</section>
+
+<!-- 5. FAKE ERROR -->
+
+<section id="s5">
+ <div style="font-size:55px">⚠️</div>
+ <h1 style="color:#ff8eb8">CRITICAL SYSTEM ERROR</h1>
+ <div class="card" id="errorCard">
+  <p>ERROR 404: TOO MUCH BIRTHDAY CUTENESS DETECTED.</p>
+  <p>Attempting to process birthday girl...</p>
+  <p>PROCESS FAILED. SHE IS TOO ICONIC. 💀</p>
+ </div>
+ <button onclick="fixError()">TRY TO FIX THE PROBLEM</button>
+ <p id="errorResult"></p>
+</section>
+
+<!-- 6. SECRET FILE -->
+
+<section id="s6">
+ <p>System recovery complete...</p>
+ <h1>Wait. There's something here.</h1>
+ <p>A hidden file has been discovered deep inside this little universe.</p>
+ <div class="card" onclick="openFile()" style="cursor:pointer">
+  <div style="font-size:60px">📁</div>
+  <h2>for_the_girl_who_means_so_much.txt</h2>
+  <p class="small">Unknown file · Handle with care ♡</p>
+  <button>OPEN SECRET FILE</button>
+ </div>
+</section>
+
+<!-- 7. PORTAL -->
+
+<section id="s7">
+ <h1>A SECRET PORTAL... 🌌</h1>
+ <p>Okay, jokes aside...</p>
+ <p>There's something I really want you to know.</p>
+ <div class="portal" onclick="openPortal()">💗</div>
+ <p>Some things deserve more than a simple birthday wish.</p>
+ <button onclick="openPortal()">ENTER YOUR SECRET UNIVERSE</button>
+</section>
+
+<!-- 8. FINAL LETTER -->
+
+<section id="s8">
+ <p>✦ A little letter, written just for you ✦</p>
+ <h1>Dear <span id="letterName">birthday girl</span>, 💌</h1>
+ <div class="card"><p id="letter"></p></div>
+ <p>Thank you for being YOU. ♡</p>
+ <h2>The website ends here, but our story doesn't. ✨</h2>
+ <button onclick="replay()">RELIVE THE MAGIC ↺</button>
+ <footer>Made with love, a little chaos, and lots of heart. ♡</footer>
+</section>
+
+<script>
+/* =========================================
+   PERSONALISE YOUR WEBSITE IN THIS SECTION
+   ========================================= */
+
+const FRIEND_NAME = "Bestie";
+const YOUR_NAME = "Your Favourite Human";
+
+const MEMORIES = [
+ "Our beginning: one of the many little moments that became a beautiful memory. Add your real story here! 🌷",
+ "The chaos we create together deserves its own documentary. Some memories are too funny to explain. 😂",
+ "Some of my favourite moments are the little ones that might seem ordinary to everyone else. 🥹",
+ "I appreciate your presence, your kindness, your laughter, and the person you are. You deserve so much happiness. 💗"
+];
+
+const LETTER = `Happy Birthday! 💗
+
+Heyy broo.....i actually wanted to write a very long and heartfelt note...but what to do I'm falling short of words but stil this one is for uu.......
+	I still remember the first day we met and the awkward silence between us, but now the same silence has turned into endless gossip time. And the memories which we have made together is the best thing I have experienced in my lifetime. I never felt any friendship of mine so close to my heart!!!(love uuu). U know what a few days ago u texted me to go to sleep early broo that time for the very first time I felt soo happy/blessed which I can never express. 
+"Abhi yaha par hamare shabd khatam hote hai....Baki ki baatein agle saal"
+With lots of love,
+${YOUR_NAME}
+
+P.S. You're officially stuck with me for this life. No refunds. Bear with me!! 😂♡`;
+
+/* =========================================
+   WEBSITE ENGINE — NO NEED TO EDIT BELOW
+   ========================================= */
+
+document.getElementById("birthdayName").textContent =
+ "HAPPY BIRTHDAY, " + FRIEND_NAME + "! 🎂";
+document.getElementById("letterName").textContent = FRIEND_NAME;
+
+const stars = document.getElementById("stars");
+for(let i=0;i<100;i++){
+ const s=document.createElement("span");
+ s.className="star";
+ s.textContent=Math.random()>.5?"✦":"·";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ s.style.fontSize=(Math.random()*14+5)+"px";
+ s.style.animationDelay=Math.random()*3+"s";
+ stars.appendChild(s);
+}
+
+function go(n){
+ document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
+ document.getElementById("s"+n).classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function confetti(){
+ const symbols=["💗","✨","🎉","💕","🌸","⭐"];
+ for(let i=0;i<65;i++){
+  const e=document.createElement("span");
+  e.className="confetti";
+  e.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  e.style.left=Math.random()*100+"%";
+  e.style.fontSize=(Math.random()*18+12)+"px";
+  e.style.animationDuration=(Math.random()*2+2)+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),4500);
+ }
+}
+
+function openEnvelope(){confetti();go(2)}
+function showMemory(i){
+ document.getElementById("memoryMessage").textContent=MEMORIES[i];
+}
+const wishes=[
+ "I wish you endless happiness and reasons to smile. 🌷",
+ "I wish you courage to chase every dream in your heart. ⭐",
+ "I wish you people who love and appreciate the real you. 💗",
+ "I wish you peace on difficult days and hope for tomorrow. 🦋",
+ "And most of all, I wish you a lifetime of beautiful memories. ✨"
+];
+const blown=new Set();
+function blow(i){
+ if(blown.has(i))return;
+ blown.add(i);
+ document.querySelectorAll(".candle")[i].textContent="🕯️";
+ document.querySelectorAll(".candle")[i].style.opacity=".35";
+ document.getElementById("wish").textContent=wishes[i];
+ if(blown.size===5){
+  document.getElementById("cake").textContent="🎂✨💗";
+  document.getElementById("wish").textContent="ALL WISHES SENT TO THE UNIVERSE! MAY YOUR DREAMS COME TRUE. 💗";
+  document.getElementById("cakeNext").style.display="inline-block";
+  confetti();
+ }
+}
+function fixError(){
+ const c=document.getElementById("errorCard");
+ c.style.animation="shake .3s 3";
+ document.getElementById("errorResult").textContent="ERROR: BIRTHDAY GIRL CANNOT BE NORMAL. SOLUTION: ACCEPT YOUR CROWN, YOUR MAJESTY. 👑";
+ confetti();
+ setTimeout(()=>go(6),2800);
+}
+function openFile(){go(7)}
+function openPortal(){
+ confetti();
+ document.getElementById("letter").textContent=LETTER;
+ go(8);
+}
+function replay(){
+ blown.clear();
+ document.querySelectorAll(".candle").forEach(c=>{c.textContent="🕯️";c.style.opacity="1"});
+ document.getElementById("cake").textContent="🎂";
+ document.getElementById("cakeNext").style.display="none";
+ document.getElementById("wish").textContent="Every candle holds a little wish for you. ✨";
+ go(1);
+}
+</script>
+
+</body>
+</html>
